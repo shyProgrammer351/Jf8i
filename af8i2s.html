@@ -1,0 +1,38 @@
+<!DOCTYPE html> <html> 	<head> 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 		<script type="text/javascript" src="https://5awf1ssnauwzzo5wgvczig.on.drv.tw/Web/C/C0802.js"></script> 		<script type="text/javascript" src="https://shyprogrammer351.github.io/reading/functions.js"></script> 		<link rel="stylesheet" href="https://shyprogrammer351.github.io/reading/layout.css"> 		<script> 			var d10 = "3 4 5 7 1 6 9 2 8 10 12 1 11 14 2 13 15 16"; 		</script> 	</head> 	<body onload='f1();' onkeydown='f4()' oncontextmenu="return false" onselectstart="return false" oncopy="return false" oncut="return false" onpaste="return false" draggable="false" ondragstart="return false" ondrop="return false"> 		<div id = "container"> 			<div id = "titleBox"> 			</div> 			<div id = "navigationBox"> 			</div>  			<div id = "contentBox"> 				<h4>문제</h4> 				<pre style='white-space:normal;'>반지름을 입력받아 원둘레와 원면적을 구하는 문제입니다 실행순서를 클릭하세요 </pre> 				<pre class='selectable'>반지름을 입력하세요 : <b><font color='red'>3</font></b>
+반지름 3.00인 원둘레는 18.85이고 원면적은 28.27입니다.
+반지름 ( 3.00 + 1.00 )인 원둘레는 25.13이고 원면적은 50.27입니다.
+</pre><br>  	 				<h4>프로그램 코드</h4> 				<pre></pre><pre id="code0" class="unselectable codeClass">	#include &lt;stdio.h&gt; 
+
+</pre><pre id="code0" class="unselectable codeClass">	#define PI 3.141592				
+</pre><pre id="code1" class="unselectable codeClass" onmouseover="f8(this.id, true) " onmouseout="f8(this.id, false)" onclick="f7(1)">1	#define CIRCUMFERENCE( r )  ( 2 * PI * ( r ) )		
+</pre><pre id="code2" class="unselectable codeClass" onmouseover="f8(this.id, true) " onmouseout="f8(this.id, false)" onclick="f7(2)">2	#define CIRCULARAREA( r ) ( PI * ( r ) * ( r ) ) 		
+
+</pre><pre id="code3" class="unselectable codeClass" onmouseover="f8(this.id, true) " onmouseout="f8(this.id, false)" onclick="f7(3)">3	int main()																													
+</pre><pre id="code0" class="unselectable codeClass">	{
+</pre><pre id="code0" class="unselectable codeClass">		double radius = 0.0;						
+</pre><pre id="code0" class="unselectable codeClass">		double circumference = 0.0;	
+</pre><pre id="code4" class="unselectable codeClass" onmouseover="f8(this.id, true) " onmouseout="f8(this.id, false)" onclick="f7(4)">4		double circularArea = 0.0;	
+
+</pre><pre id="code0" class="unselectable codeClass">		printf("반지름을 입력하세요 : ");																				
+</pre><pre id="code5" class="unselectable codeClass" onmouseover="f8(this.id, true) " onmouseout="f8(this.id, false)" onclick="f7(5)">5		scanf("%lf", &radius );																						
+
+</pre><pre id="code6" class="unselectable codeClass" onmouseover="f8(this.id, true) " onmouseout="f8(this.id, false)" onclick="f7(6)">6		circumference = 
+</pre><pre id="code7" class="unselectable codeClass" onmouseover="f8(this.id, true) " onmouseout="f8(this.id, false)" onclick="f7(7)">7			 	CIRCUMFERENCE( radius );																			
+</pre><pre id="code8" class="unselectable codeClass" onmouseover="f8(this.id, true) " onmouseout="f8(this.id, false)" onclick="f7(8)">8		circularArea = 
+</pre><pre id="code9" class="unselectable codeClass" onmouseover="f8(this.id, true) " onmouseout="f8(this.id, false)" onclick="f7(9)">9			 	CIRCULARAREA( radius );																				
+
+</pre><pre id="code10" class="unselectable codeClass" onmouseover="f8(this.id, true) " onmouseout="f8(this.id, false)" onclick="f7(10)">10		printf("반지름 %.2f인 원둘레는 %.2f이고 원면적은 %.2f입니다.", 							
+</pre><pre id="code0" class="unselectable codeClass">						radius, circumference, circularArea );										
+
+</pre><pre id="code11" class="unselectable codeClass" onmouseover="f8(this.id, true) " onmouseout="f8(this.id, false)" onclick="f7(11)">11		circumference = 
+</pre><pre id="code12" class="unselectable codeClass" onmouseover="f8(this.id, true) " onmouseout="f8(this.id, false)" onclick="f7(12)">12			 	CIRCUMFERENCE( radius + 1 ); 																
+</pre><pre id="code13" class="unselectable codeClass" onmouseover="f8(this.id, true) " onmouseout="f8(this.id, false)" onclick="f7(13)">13		circularArea = 
+</pre><pre id="code14" class="unselectable codeClass" onmouseover="f8(this.id, true) " onmouseout="f8(this.id, false)" onclick="f7(14)">14			 	CIRCULARAREA( radius + 1 );																	
+
+</pre><pre id="code15" class="unselectable codeClass" onmouseover="f8(this.id, true) " onmouseout="f8(this.id, false)" onclick="f7(15)">15		printf("반지름 ( %.2f + 1.00 )인 원둘레는 %.2f이고 원면적은 %.2f입니다.", 		
+</pre><pre id="code0" class="unselectable codeClass">						radius, circumference, circularArea);											
+
+</pre><pre id="code16" class="unselectable codeClass" onmouseover="f8(this.id, true) " onmouseout="f8(this.id, false)" onclick="f7(16)">16		return 0;
+</pre><pre id="code0" class="unselectable codeClass">	}
+</pre>
+</pre> 			</div> 			<div id = "floatingBox"> 				<b>실행 순서</b> 				<pre id = "d4" style='white-space:normal; word-wrap:break-word; width:150px;'></pre> 			</div> 		</div> 	</body> </html>   

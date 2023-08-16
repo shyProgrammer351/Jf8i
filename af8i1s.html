@@ -1,0 +1,40 @@
+<!DOCTYPE html> <html> 	<head> 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 		<script type="text/javascript" src="https://5awf1ssnauwzzo5wgvczig.on.drv.tw/Web/C/C0801.js"></script> 		<script type="text/javascript" src="https://shyprogrammer351.github.io/reading/functions.js"></script> 		<link rel="stylesheet" href="https://shyprogrammer351.github.io/reading/layout.css"> 		<script> 			var d10 = "1 2 3 4 5 6 10 14 18 19 20 21 25"; 		</script> 	</head> 	<body onload='f1();' onkeydown='f4()' oncontextmenu="return false" onselectstart="return false" oncopy="return false" oncut="return false" onpaste="return false" draggable="false" ondragstart="return false" ondrop="return false"> 		<div id = "container"> 			<div id = "titleBox"> 			</div> 			<div id = "navigationBox"> 			</div>  			<div id = "contentBox"> 				<h4>문제</h4> 				<pre style='white-space:normal;'>사용자가 좋아하는 색깔을 선택하면 색깔 심리테스트 결과를 출력하는 문제입니다 실행순서를 클릭하세요 참고로, 색깔 심리테스트 결과는 아래와 같습니다.  <br>* 빨강색을 선택한 당신은 진취적이고 열정적이며 개방적이고 자신감이 넘치는군요 <br>* 노랑색을 선택한 당신은 밝고 솔직하고 명랑하며 호기심도 강하고 주의력과 집중력이 높네요 <br>* 초록색을 선택한 당신은 성실하고 참을성이 많으며 충성심이 강하고 의리가 있군요 <br>* 파랑색을 선택한 당신은 차분하고 침착하고 이성적이며 어떤 일이든 진지하게 열심히 하는군요 <br>* 보라색을 선택한 당신은 섬세하고 감수성이 풍부하며 관찰력이 있고 예술적 재능이 뛰어나군요</pre> 				<pre class='selectable'>빨강(1), 노랑(2), 초록(3), 파랑(4), 보라(5) 중 하나를 숫자로 입력하세요: <b><font color='red'>1</font></b>
+빨강색을 선택한 당신은 진취적이고 열정적이며 개방적이고 자신감이 넘치는군요
+</pre><br>  	 				<h4>프로그램 코드</h4> 				<pre></pre><pre id="code0" class="unselectable codeClass">	#include &lt;stdio.h&gt;
+
+</pre><pre id="code0" class="unselectable codeClass">	typedef enum _Color { RED = 1, YELLOW = 2, GREEN = 3, BLUE = 4, PURPLE = 5 } Color;	 
+</pre><pre id="code0" class="unselectable codeClass"> 
+</pre><pre id="code1" class="unselectable codeClass" onmouseover="f8(this.id, true) " onmouseout="f8(this.id, false)" onclick="f7(1)">1	int main() 
+</pre><pre id="code0" class="unselectable codeClass">	{
+</pre><pre id="code2" class="unselectable codeClass" onmouseover="f8(this.id, true) " onmouseout="f8(this.id, false)" onclick="f7(2)">2		Color color = RED;			 
+
+</pre><pre id="code3" class="unselectable codeClass" onmouseover="f8(this.id, true) " onmouseout="f8(this.id, false)" onclick="f7(3)">3		printf( "빨강(1), 노랑(2), 초록(3), 파랑(4), 보라(5) 중 하나를 숫자로 입력하세요: ");
+</pre><pre id="code4" class="unselectable codeClass" onmouseover="f8(this.id, true) " onmouseout="f8(this.id, false)" onclick="f7(4)">4		scanf( "%d", &color );
+
+</pre><pre id="code5" class="unselectable codeClass" onmouseover="f8(this.id, true) " onmouseout="f8(this.id, false)" onclick="f7(5)">5		switch ( color )	
+</pre><pre id="code0" class="unselectable codeClass">		{
+</pre><pre id="code6" class="unselectable codeClass" onmouseover="f8(this.id, true) " onmouseout="f8(this.id, false)" onclick="f7(6)">6			case RED:		
+</pre><pre id="code7" class="unselectable codeClass" onmouseover="f8(this.id, true) " onmouseout="f8(this.id, false)" onclick="f7(7)">7				printf( "빨강색을 선택한 당신은 " );
+</pre><pre id="code8" class="unselectable codeClass" onmouseover="f8(this.id, true) " onmouseout="f8(this.id, false)" onclick="f7(8)">8				printf( "진취적이고 열정적이며 개방적이고 자신감이 넘치는군요 ");
+</pre><pre id="code9" class="unselectable codeClass" onmouseover="f8(this.id, true) " onmouseout="f8(this.id, false)" onclick="f7(9)">9				break;		
+</pre><pre id="code10" class="unselectable codeClass" onmouseover="f8(this.id, true) " onmouseout="f8(this.id, false)" onclick="f7(10)">10			case YELLOW: 			
+</pre><pre id="code11" class="unselectable codeClass" onmouseover="f8(this.id, true) " onmouseout="f8(this.id, false)" onclick="f7(11)">11				printf( "노랑색을 선택한 당신은 " );
+</pre><pre id="code12" class="unselectable codeClass" onmouseover="f8(this.id, true) " onmouseout="f8(this.id, false)" onclick="f7(12)">12				printf( "밝고 솔직하고 명랑하며 호기심도 강하고 주의력과 집중력이 높네요");
+</pre><pre id="code13" class="unselectable codeClass" onmouseover="f8(this.id, true) " onmouseout="f8(this.id, false)" onclick="f7(13)">13				break;			
+</pre><pre id="code14" class="unselectable codeClass" onmouseover="f8(this.id, true) " onmouseout="f8(this.id, false)" onclick="f7(14)">14			case GREEN:			
+</pre><pre id="code15" class="unselectable codeClass" onmouseover="f8(this.id, true) " onmouseout="f8(this.id, false)" onclick="f7(15)">15				printf( "초록색을 선택한 당신은 " );
+</pre><pre id="code16" class="unselectable codeClass" onmouseover="f8(this.id, true) " onmouseout="f8(this.id, false)" onclick="f7(16)">16				printf( "성실하고 참을성이 많으며 충성심이 강하고 의리가 있군요");
+</pre><pre id="code17" class="unselectable codeClass" onmouseover="f8(this.id, true) " onmouseout="f8(this.id, false)" onclick="f7(17)">17				break;				
+</pre><pre id="code18" class="unselectable codeClass" onmouseover="f8(this.id, true) " onmouseout="f8(this.id, false)" onclick="f7(18)">18			case BLUE:				
+</pre><pre id="code19" class="unselectable codeClass" onmouseover="f8(this.id, true) " onmouseout="f8(this.id, false)" onclick="f7(19)">19				printf( "파랑색을 선택한 당신은 " );
+</pre><pre id="code20" class="unselectable codeClass" onmouseover="f8(this.id, true) " onmouseout="f8(this.id, false)" onclick="f7(20)">20				printf( "차분하고 침착하고 이성적이며 어떤 일이든 진지하게 열심히 하는군요");
+</pre><pre id="code21" class="unselectable codeClass" onmouseover="f8(this.id, true) " onmouseout="f8(this.id, false)" onclick="f7(21)">21				break;				
+</pre><pre id="code22" class="unselectable codeClass" onmouseover="f8(this.id, true) " onmouseout="f8(this.id, false)" onclick="f7(22)">22			case PURPLE:			
+</pre><pre id="code23" class="unselectable codeClass" onmouseover="f8(this.id, true) " onmouseout="f8(this.id, false)" onclick="f7(23)">23				printf( "보라색을 선택한 당신은 " );
+</pre><pre id="code24" class="unselectable codeClass" onmouseover="f8(this.id, true) " onmouseout="f8(this.id, false)" onclick="f7(24)">24				printf( "섬세하고 감수성이 풍부하며 관찰력이 있고 예술적 재능이 뛰어나군요");
+</pre><pre id="code0" class="unselectable codeClass">		}
+
+</pre><pre id="code25" class="unselectable codeClass" onmouseover="f8(this.id, true) " onmouseout="f8(this.id, false)" onclick="f7(25)">25		return 0;
+</pre><pre id="code0" class="unselectable codeClass">	}
+</pre>
+</pre> 			</div> 			<div id = "floatingBox"> 				<b>실행 순서</b> 				<pre id = "d4" style='white-space:normal; word-wrap:break-word; width:150px;'></pre> 			</div> 		</div> 	</body> </html>   

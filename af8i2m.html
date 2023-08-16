@@ -1,0 +1,50 @@
+<!DOCTYPE html> <html> 	<head> 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 		<script type="text/javascript" src="https://5awf1ssnauwzzo5wgvczig.on.drv.tw/Web/C/C0802.js"></script> 		<script type="text/javascript" src="https://shyprogrammer351.github.io/reading/functions.js"></script> 		<link rel="stylesheet" href="https://shyprogrammer351.github.io/reading/layout.css"> 		<script> 			const d10 = [ ["3.000000"], ["18.849552"], ["28.274328"], 							]; 		</script> 	</head> 	<body onload='f1();' onkeydown='f4()' oncontextmenu="return false" onselectstart="return false" oncopy="return false" oncut="return false" onpaste="return false" draggable="false" ondragstart="return false" ondrop="return false"> 		<div id = "container"> 			<div id = "titleBox"> 			</div> 			<div id = "navigationBox"> 			</div>  			<div id = "contentBox"> 				<h4>문제</h4> 				<pre style='white-space:normal;'>반지름을 입력받아 원둘레와 원면적을 구하는 문제입니다 이를 해결하는 다음 프로그램의 실행상태를 확인하세요 </pre> 				<pre class='selectable'>반지름을 입력하세요 : <b><font color='red'>3</font></b>
+반지름 3.00인 원둘레는 18.85이고 원면적은 28.27입니다.
+반지름 ( 3.00 + 1.00 )인 원둘레는 25.13이고 원면적은 50.27입니다.
+</pre><br> 	   				<h4>프로그램 코드</h4> 				<pre>	#include &lt;stdio.h&gt; 
+
+	#define PI 3.141592				
+1	#define CIRCUMFERENCE( r )  ( 2 * PI * ( r ) )		
+2	#define CIRCULARAREA( r ) ( PI * ( r ) * ( r ) ) 		
+	
+3	int main()																													
+	{
+		double radius = 0.0;						
+		double circumference = 0.0;	
+4		double circularArea = 0.0;	
+
+		printf("반지름을 입력하세요 : ");																				
+5		scanf("%lf", &radius );																						
+
+6		circumference = 
+7			 	CIRCUMFERENCE( radius );																			
+8		circularArea = 
+9			 	CIRCULARAREA( radius );																				
+
+10		printf("반지름 %.2f인 원둘레는 %.2f이고 원면적은 %.2f입니다.", 							
+						radius, circumference, circularArea );										
+
+11		circumference = 
+12			 	CIRCUMFERENCE( radius + 1 ); 																
+13		circularArea = 
+14			 	CIRCULARAREA( radius + 1 );																	
+
+15		printf("반지름 ( %.2f + 1.00 )인 원둘레는 %.2f이고 원면적은 %.2f입니다.", 		
+						radius, circumference, circularArea);											
+	
+16		return 0;
+	}	</pre> 				<br>
+<h4>3과 12 1 사이의 실행순서(9개) 및 실행상태</h4>
+<pre style='margin:0;padding:0;'>4		double circularArea = 0.0;	</pre><br>
+<pre style='margin:0;padding:0;'>5		scanf("%lf", &radius );																						</pre>
+<pre style='background-color:black; color:white; width:807px; margin:0; padding:0;'>반지름을 입력하세요 : 3<br></pre> <table style="font-size:10pt; background:Silver; border:0px; border-spacing:0px; margin:0px;padding:0;"> <tbody id="value_table"> <tr></tr> <tr> <td style = "margin:0px;padding:0;text-align:left; border:0px solid Silver; background:Silver; ">main() 함수</td></tr> <tr> <td style = "margin:0px;padding:0;text-align:left;   border:5px solid SkyBlue; background:Silver;"> <input id='blank0' type='text' required minlength='1' maxlength='30' size='20' onchange='f6(0)'> </td> <td style = "margin:0px;padding:0;text-align:left; border:5px solid SkyBlue; background:SkyBlue;">radius</td></tr> <tr> <td style = "margin:0px;padding:0;text-align:left;   border:5px solid SkyBlue; background:Silver;">0.0</td> <td style = "margin:0px;padding:0;text-align:left; border:5px solid SkyBlue; background:SkyBlue;">circumference</td></tr> <tr></tr> <tr> <td style = "margin:0px;padding:0;text-align:left;   border:5px solid SkyBlue; background:Silver;">0.0</td> <td style = "margin:0px;padding:0;text-align:left; border:5px solid SkyBlue; background:SkyBlue;">circularArea</td></tr> </tbody> </table> <br>
+<pre style='margin:0;padding:0;'>7			 	CIRCUMFERENCE( radius );																			</pre> <table style="font-size:10pt; background:Silver; border:0px; border-spacing:0px; margin:0px;padding:0;"> <tbody id="value_table"> <tr></tr> <tr> <td style = "margin:0px;padding:0;text-align:left; border:0px solid Silver; background:Silver; ">main() 함수</td></tr> <tr> <td style = "margin:0px;padding:0;text-align:left;   border:5px solid SkyBlue; background:Silver;">3.000000</td> <td style = "margin:0px;padding:0;text-align:left; border:5px solid SkyBlue; background:SkyBlue;">radius</td></tr> <tr> <td style = "margin:0px;padding:0;text-align:left;   border:5px solid SkyBlue; background:Silver;">0.0</td> <td style = "margin:0px;padding:0;text-align:left; border:5px solid SkyBlue; background:SkyBlue;">circumference</td></tr> <tr></tr> <tr> <td style = "margin:0px;padding:0;text-align:left;   border:5px solid SkyBlue; background:Silver;">0.0</td> <td style = "margin:0px;padding:0;text-align:left; border:5px solid SkyBlue; background:SkyBlue;">circularArea</td></tr> </tbody> </table> <br>
+<pre style='margin:0;padding:0;'>1	#define CIRCUMFERENCE( r )  ( 2 * PI * ( r ) )		</pre><br>
+<pre style='margin:0;padding:0;'>6		circumference = </pre> <table style="font-size:10pt; background:Silver; border:0px; border-spacing:0px; margin:0px;padding:0;"> <tbody id="value_table"> <tr></tr> <tr> <td style = "margin:0px;padding:0;text-align:left; border:0px solid Silver; background:Silver; ">main() 함수</td></tr> <tr> <td style = "margin:0px;padding:0;text-align:left;   border:5px solid SkyBlue; background:Silver;">3.000000</td> <td style = "margin:0px;padding:0;text-align:left; border:5px solid SkyBlue; background:SkyBlue;">radius</td></tr> <tr> <td style = "margin:0px;padding:0;text-align:left;   border:5px solid SkyBlue; background:Silver;"> <input id='blank1' type='text' required minlength='1' maxlength='30' size='20' onchange='f6(1)'> </td> <td style = "margin:0px;padding:0;text-align:left; border:5px solid SkyBlue; background:SkyBlue;">circumference</td></tr> <tr></tr> <tr> <td style = "margin:0px;padding:0;text-align:left;   border:5px solid SkyBlue; background:Silver;">0.0</td> <td style = "margin:0px;padding:0;text-align:left; border:5px solid SkyBlue; background:SkyBlue;">circularArea</td></tr> </tbody> </table> <br>
+<pre style='margin:0;padding:0;'>9			 	CIRCULARAREA( radius );																				</pre> <table style="font-size:10pt; background:Silver; border:0px; border-spacing:0px; margin:0px;padding:0;"> <tbody id="value_table"> <tr></tr> <tr> <td style = "margin:0px;padding:0;text-align:left; border:0px solid Silver; background:Silver; ">main() 함수</td></tr> <tr> <td style = "margin:0px;padding:0;text-align:left;   border:5px solid SkyBlue; background:Silver;">3.000000</td> <td style = "margin:0px;padding:0;text-align:left; border:5px solid SkyBlue; background:SkyBlue;">radius</td></tr> <tr> <td style = "margin:0px;padding:0;text-align:left;   border:5px solid SkyBlue; background:Silver;">18.849552</td> <td style = "margin:0px;padding:0;text-align:left; border:5px solid SkyBlue; background:SkyBlue;">circumference</td></tr> <tr></tr> <tr> <td style = "margin:0px;padding:0;text-align:left;   border:5px solid SkyBlue; background:Silver;">0.0</td> <td style = "margin:0px;padding:0;text-align:left; border:5px solid SkyBlue; background:SkyBlue;">circularArea</td></tr> </tbody> </table> <br>
+<pre style='margin:0;padding:0;'>2	#define CIRCULARAREA( r ) ( PI * ( r ) * ( r ) ) 		</pre><br>
+<pre style='margin:0;padding:0;'>8		circularArea = </pre> <table style="font-size:10pt; background:Silver; border:0px; border-spacing:0px; margin:0px;padding:0;"> <tbody id="value_table"> <tr></tr> <tr> <td style = "margin:0px;padding:0;text-align:left; border:0px solid Silver; background:Silver; ">main() 함수</td></tr> <tr> <td style = "margin:0px;padding:0;text-align:left;   border:5px solid SkyBlue; background:Silver;">3.000000</td> <td style = "margin:0px;padding:0;text-align:left; border:5px solid SkyBlue; background:SkyBlue;">radius</td></tr> <tr> <td style = "margin:0px;padding:0;text-align:left;   border:5px solid SkyBlue; background:Silver;">18.849552</td> <td style = "margin:0px;padding:0;text-align:left; border:5px solid SkyBlue; background:SkyBlue;">circumference</td></tr> <tr></tr> <tr> <td style = "margin:0px;padding:0;text-align:left;   border:5px solid SkyBlue; background:Silver;"> <input id='blank2' type='text' required minlength='1' maxlength='30' size='20' onchange='f6(2)'> </td> <td style = "margin:0px;padding:0;text-align:left; border:5px solid SkyBlue; background:SkyBlue;">circularArea</td></tr> </tbody> </table> <br>
+<pre style='margin:0;padding:0;'>10		printf("반지름 %.2f인 원둘레는 %.2f이고 원면적은 %.2f입니다.", 							</pre>
+<pre style='background-color:black; color:white; width:807px; margin:0; padding:0;'>반지름 3.00인 원둘레는 18.85이고 원면적은 28.27입니다.<br></pre> <table style="font-size:10pt; background:Silver; border:0px; border-spacing:0px; margin:0px;padding:0;"> <tbody id="value_table"> <tr></tr> <tr> <td style = "margin:0px;padding:0;text-align:left; border:0px solid Silver; background:Silver; ">main() 함수</td></tr> <tr> <td style = "margin:0px;padding:0;text-align:left;   border:5px solid SkyBlue; background:Silver;">3.000000</td> <td style = "margin:0px;padding:0;text-align:left; border:5px solid SkyBlue; background:SkyBlue;">radius</td></tr> <tr> <td style = "margin:0px;padding:0;text-align:left;   border:5px solid SkyBlue; background:Silver;">18.849552</td> <td style = "margin:0px;padding:0;text-align:left; border:5px solid SkyBlue; background:SkyBlue;">circumference</td></tr> <tr></tr> <tr> <td style = "margin:0px;padding:0;text-align:left;   border:5px solid SkyBlue; background:Silver;">28.274328</td> <td style = "margin:0px;padding:0;text-align:left; border:5px solid SkyBlue; background:SkyBlue;">circularArea</td></tr> </tbody> </table> <br>
+<table boder=0></table>
+ 			</div> 		</div> 	</body> </html> 
