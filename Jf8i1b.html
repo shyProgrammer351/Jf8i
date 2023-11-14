@@ -1,0 +1,102 @@
+<!DOCTYPE html> <html> 	<head> 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 		<script type="text/javascript" src="https://5awf1ssnauwzzo5wgvczig.on.drv.tw/Web/J/J0801.js"></script> 		<script type="text/javascript" src="../reading/functions.js"></script> 		<link rel="stylesheet" href="../reading/layout.css"> 		<script> 			const d10 = [ [ "ServerSocket" ], [ "Socket" ], [ "ServerSocket" ], [ "ServerSocket" ], [ "Socket" ], [ "accept" ], [ "Socket" ], [ "Socket" ], [ "Socket" ], 							]; 		</script> 	</head> 	<body onload='f1();' onkeydown='f4()' oncontextmenu="return false" onselectstart="return false" oncopy="return false" oncut="return false" onpaste="return false" draggable="false" ondragstart="return false" ondrop="return false"> 		<div id = "container"> 			<div id = "titleBox"> 			</div> 			<div id = "navigationBox"> 			</div>  			<div id = "contentBox"> 				<h4>문제</h4> 				<pre style='white-space:normal;'>서버와 클라이언트가 네트워크를 통해서 채팅하는 문제입니다 이를 해결하는 다음 프로그램에 대해 빈칸을 채우세요 </pre> 				  	  				<h4>코드 빈칸 채우기</h4> 				<pre style='white-space:pre;border:1px'>import java.io.BufferedReader; 
+import java.io.InputStreamReader; 
+import java.io.PrintWriter; 
+import java.net.<input id='blank0' type='text' required minlength='1' maxlength='30' size='10' onchange='f6(0)'>; 
+import java.net.<input id='blank1' type='text' required minlength='1' maxlength='30' size='10' onchange='f6(1)'>; 
+import java.util.Scanner; 
+ 
+public class NaiveChatServer 
+{ 
+	public static void main(String[] args)  
+	{ 
+		try  
+		{ 
+			System.out.println( "[Client]가 대화를 시작할 때까지 잠시만 기다려 주세요" ); 
+ 
+			<input id='blank2' type='text' required minlength='1' maxlength='30' size='10' onchange='f6(2)'> serverSocket = new <input id='blank3' type='text' required minlength='1' maxlength='30' size='10' onchange='f6(3)'>( 7700 );  
+			<input id='blank4' type='text' required minlength='1' maxlength='30' size='10' onchange='f6(4)'> socket =  
+			                serverSocket.<input id='blank5' type='text' required minlength='1' maxlength='30' size='10' onchange='f6(5)'>();  
+ 
+			BufferedReader networkIn = new BufferedReader( new InputStreamReader( socket.getInputStream() ) ); 
+			PrintWriter networkOut = new PrintWriter( socket.getOutputStream(), true ); 
+			Scanner scan = new Scanner( System.in );  
+ 
+			while( true ) 
+			{ 
+				String clientMessage =  
+				                       networkIn.readLine(); 
+				System.out.println( "[Client] " + clientMessage ); 
+ 
+				if( clientMessage.equals( "bye" ) ) 
+				{ 
+					System.out.println( "[Client]가 대화를 종료하였습니다" ); 
+					break;					 
+				} 
+				 
+				System.out.print( "[Server] " ); 
+				String serverMessage = scan.nextLine();  
+				networkOut.println( serverMessage ); 
+			} 
+ 
+			networkIn.close(); 
+			networkOut.close(); 
+			socket.close(); 
+			serverSocket.close(); 
+			scan.close(); 
+		} 
+		catch ( Exception e ) 
+		{ 
+			e.printStackTrace(); 
+		} 
+} 
+	} 
+ 
+import java.io.BufferedReader; 
+import java.io.InputStreamReader; 
+import java.io.PrintWriter; 
+import java.net.<input id='blank6' type='text' required minlength='1' maxlength='30' size='10' onchange='f6(6)'>; 
+import java.util.Scanner; 
+ 
+public class NaiveChatClient 
+{ 
+	public static void main(String[] args)  
+	{ 
+		try  
+		{ 
+			System.out.println( "[Server]와 함께 얘기 해요 바로 시작해 주세요 bye를 입력하면 종료됩니다" ); 
+ 
+			<input id='blank7' type='text' required minlength='1' maxlength='30' size='10' onchange='f6(7)'> socket =  
+			         new <input id='blank8' type='text' required minlength='1' maxlength='30' size='10' onchange='f6(8)'>( "localhost", 7700 );  
+ 
+			BufferedReader networkIn = new BufferedReader( new InputStreamReader( socket.getInputStream() ) ); 
+			PrintWriter networkOut = new PrintWriter( socket.getOutputStream(), true ); 
+			Scanner scan = new Scanner( System.in );  
+			 
+			while( true ) 
+			{ 
+				System.out.print( "[Client] " ); 
+				String clientMessage = scan.nextLine();  
+				networkOut.println( clientMessage ); 
+ 
+				if( clientMessage.equals( "bye" ) ) 
+				{ 
+					System.out.println( "[Client]가 대화를 종료하였습니다" ); 
+					break;					 
+				} 
+ 
+				String serverMessage  
+				                     = networkIn.readLine(); 
+				System.out.println( "[Server] " + serverMessage ); 
+			} 
+ 
+			networkIn.close(); 
+			networkOut.close(); 
+			socket.close(); 
+			scan.close(); 
+		} 
+		catch ( Exception e ) 
+		{ 
+			e.printStackTrace(); 
+		} 
+	} 
+} 	 			</pre> 			</div> 		</div> 	</body> </html> 

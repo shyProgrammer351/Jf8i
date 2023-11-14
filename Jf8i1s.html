@@ -1,0 +1,113 @@
+<!DOCTYPE html> <html> 	<head> 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 		<script type="text/javascript" src="https://5awf1ssnauwzzo5wgvczig.on.drv.tw/Web/J/J0801.js"></script> 		<script type="text/javascript" src="../reading/functions.js"></script> 		<link rel="stylesheet" href="../reading/layout.css"> 		<script> 			var d10 = "S1b S12 E001 C1b C12 E002 S11 S13 S15 E003 C11 C13 C14 E004 S14 S16 S18 E005 C17 C19 C13 C14 E006 S14 S16 S17 S19 S1e C15 C16 C1e"; 		</script> 	</head> 	<body onload='f1();' onkeydown='f4()' oncontextmenu="return false" oncut="return false" onpaste="return false" draggable="false" ondragstart="return false" ondrop="return false"> 		<div id = "container"> 			<div id = "titleBox"> 			</div> 			<div id = "navigationBox"> 			</div>  			<div id = "contentBox"> 				<h4>문제</h4> 				<pre style='white-space:normal;'>서버와 클라이언트가 네트워크를 통해서 채팅하는 문제입니다 실행순서를 클릭하세요 </pre> 				  	 				<h4>프로그램 코드</h4> 				<pre>
+<pre id="codeE001" class="unselectable codeClass" onmouseover="f8(this.id, true) " onmouseout="f8(this.id, false)" onclick="f7('E001')">E001		<font color="green">// Server는 Client가 접속 요청할 때까지 계속 대기</font>
+</pre><pre id="codeE002" class="unselectable codeClass" onmouseover="f8(this.id, true) " onmouseout="f8(this.id, false)" onclick="f7('E002')">E002		<font color="green">// Server는 Client가 접속 요청하면 네트워크 연결 초기화</font>
+</pre><pre id="codeE003" class="unselectable codeClass" onmouseover="f8(this.id, true) " onmouseout="f8(this.id, false)" onclick="f7('E003')">E003		<font color="green">// Server는 Client의 메시지가 도착할 때까지 계속 대기</font>
+</pre><pre id="codeE004" class="unselectable codeClass" onmouseover="f8(this.id, true) " onmouseout="f8(this.id, false)" onclick="f7('E004')">E004		<font color="green">// Client가 메시지([Client]안녕하세요)를 Server에 전송</font> 
+</pre><pre id="codeE005" class="unselectable codeClass" onmouseover="f8(this.id, true) " onmouseout="f8(this.id, false)" onclick="f7('E005')">E005		<font color="green">// Server가 메시지([Server]반가워요)를 Client에 전송</font> 
+</pre><pre id="codeE006" class="unselectable codeClass" onmouseover="f8(this.id, true) " onmouseout="f8(this.id, false)" onclick="f7('E006')">E006		<font color="green">// Client가 메시지([Client]bye)를 Server에 전송</font> 
+
+</pre><pre id="code0" class="unselectable codeClass">	import java.io.BufferedReader;
+</pre><pre id="code0" class="unselectable codeClass">	import java.io.InputStreamReader;
+</pre><pre id="code0" class="unselectable codeClass">	import java.io.PrintWriter;
+</pre><pre id="code0" class="unselectable codeClass">	import java.net.ServerSocket;
+</pre><pre id="code0" class="unselectable codeClass">	import java.net.Socket;
+</pre><pre id="code0" class="unselectable codeClass">	import java.util.Scanner;
+
+</pre><pre id="code0" class="unselectable codeClass">	public class NaiveChatServer
+</pre><pre id="code0" class="unselectable codeClass">	{
+</pre><pre id="codeS1b" class="unselectable codeClass" onmouseover="f8(this.id, true) " onmouseout="f8(this.id, false)" onclick="f7('S1b')">S1b		public static void main(String[] args) 
+</pre><pre id="code0" class="unselectable codeClass">		{
+</pre><pre id="code0" class="unselectable codeClass">			try 
+</pre><pre id="code0" class="unselectable codeClass">			{
+</pre><pre id="code0" class="unselectable codeClass">				System.out.println( "[Client]가 대화를 시작할 때까지 잠시만 기다려 주세요" );
+
+</pre><pre id="code0" class="unselectable codeClass">				ServerSocket serverSocket = new ServerSocket( 7700 ); 
+</pre><pre id="codeS11" class="unselectable codeClass" onmouseover="f8(this.id, true) " onmouseout="f8(this.id, false)" onclick="f7('S11')">S11				Socket socket = 
+</pre><pre id="codeS12" class="unselectable codeClass" onmouseover="f8(this.id, true) " onmouseout="f8(this.id, false)" onclick="f7('S12')">S12				                serverSocket.accept(); 
+
+</pre><pre id="code0" class="unselectable codeClass">				BufferedReader networkIn = new BufferedReader( new InputStreamReader( socket.getInputStream() ) );
+</pre><pre id="code0" class="unselectable codeClass">				PrintWriter networkOut = new PrintWriter( socket.getOutputStream(), true );
+</pre><pre id="code0" class="unselectable codeClass">				Scanner scan = new Scanner( System.in ); 
+
+</pre><pre id="codeS13" class="unselectable codeClass" onmouseover="f8(this.id, true) " onmouseout="f8(this.id, false)" onclick="f7('S13')">S13				while( true )
+</pre><pre id="code0" class="unselectable codeClass">				{
+</pre><pre id="codeS14" class="unselectable codeClass" onmouseover="f8(this.id, true) " onmouseout="f8(this.id, false)" onclick="f7('S14')">S14					String clientMessage = 
+</pre><pre id="codeS15" class="unselectable codeClass" onmouseover="f8(this.id, true) " onmouseout="f8(this.id, false)" onclick="f7('S15')">S15					                       networkIn.readLine();
+</pre><pre id="code0" class="unselectable codeClass">					System.out.println( "[Client] " + clientMessage );
+
+</pre><pre id="codeS16" class="unselectable codeClass" onmouseover="f8(this.id, true) " onmouseout="f8(this.id, false)" onclick="f7('S16')">S16					if( clientMessage.equals( "bye" ) )
+</pre><pre id="code0" class="unselectable codeClass">					{
+</pre><pre id="code0" class="unselectable codeClass">						System.out.println( "[Client]가 대화를 종료하였습니다" );
+</pre><pre id="codeS17" class="unselectable codeClass" onmouseover="f8(this.id, true) " onmouseout="f8(this.id, false)" onclick="f7('S17')">S17						break;					
+</pre><pre id="code0" class="unselectable codeClass">					}
+</pre><pre id="code0" class="unselectable codeClass">					
+</pre><pre id="code0" class="unselectable codeClass">					System.out.print( "[Server] " );
+</pre><pre id="code0" class="unselectable codeClass">					String serverMessage = scan.nextLine(); 
+</pre><pre id="codeS18" class="unselectable codeClass" onmouseover="f8(this.id, true) " onmouseout="f8(this.id, false)" onclick="f7('S18')">S18					networkOut.println( serverMessage );
+</pre><pre id="code0" class="unselectable codeClass">				}
+
+</pre><pre id="code0" class="unselectable codeClass">				networkIn.close();
+</pre><pre id="code0" class="unselectable codeClass">				networkOut.close();
+</pre><pre id="code0" class="unselectable codeClass">				socket.close();
+</pre><pre id="code0" class="unselectable codeClass">				serverSocket.close();
+</pre><pre id="codeS19" class="unselectable codeClass" onmouseover="f8(this.id, true) " onmouseout="f8(this.id, false)" onclick="f7('S19')">S19				scan.close();
+</pre><pre id="code0" class="unselectable codeClass">			}
+</pre><pre id="code0" class="unselectable codeClass">			catch ( Exception e )
+</pre><pre id="code0" class="unselectable codeClass">			{
+</pre><pre id="code0" class="unselectable codeClass">				e.printStackTrace();
+</pre><pre id="code0" class="unselectable codeClass">			}
+</pre><pre id="codeS1e" class="unselectable codeClass" onmouseover="f8(this.id, true) " onmouseout="f8(this.id, false)" onclick="f7('S1e')">S1e	}
+</pre><pre id="code0" class="unselectable codeClass">		}
+
+
+</pre><pre id="code0" class="unselectable codeClass">	import java.io.BufferedReader;
+</pre><pre id="code0" class="unselectable codeClass">	import java.io.InputStreamReader;
+</pre><pre id="code0" class="unselectable codeClass">	import java.io.PrintWriter;
+</pre><pre id="code0" class="unselectable codeClass">	import java.net.Socket;
+</pre><pre id="code0" class="unselectable codeClass">	import java.util.Scanner;
+
+</pre><pre id="code0" class="unselectable codeClass">	public class NaiveChatClient
+</pre><pre id="code0" class="unselectable codeClass">	{
+</pre><pre id="codeC1b" class="unselectable codeClass" onmouseover="f8(this.id, true) " onmouseout="f8(this.id, false)" onclick="f7('C1b')">C1b		public static void main(String[] args) 
+</pre><pre id="code0" class="unselectable codeClass">		{
+</pre><pre id="code0" class="unselectable codeClass">			try 
+</pre><pre id="code0" class="unselectable codeClass">			{
+</pre><pre id="code0" class="unselectable codeClass">				System.out.println( "[Server]와 함께 얘기 해요 바로 시작해 주세요 bye를 입력하면 종료됩니다" );
+
+</pre><pre id="codeC11" class="unselectable codeClass" onmouseover="f8(this.id, true) " onmouseout="f8(this.id, false)" onclick="f7('C11')">C11				Socket socket = 
+</pre><pre id="codeC12" class="unselectable codeClass" onmouseover="f8(this.id, true) " onmouseout="f8(this.id, false)" onclick="f7('C12')">C12				         new Socket( "localhost", 7700 ); 
+
+</pre><pre id="code0" class="unselectable codeClass">				BufferedReader networkIn = new BufferedReader( new InputStreamReader( socket.getInputStream() ) );
+</pre><pre id="code0" class="unselectable codeClass">				PrintWriter networkOut = new PrintWriter( socket.getOutputStream(), true );
+</pre><pre id="code0" class="unselectable codeClass">				Scanner scan = new Scanner( System.in ); 
+</pre><pre id="code0" class="unselectable codeClass">				
+</pre><pre id="codeC13" class="unselectable codeClass" onmouseover="f8(this.id, true) " onmouseout="f8(this.id, false)" onclick="f7('C13')">C13				while( true )
+</pre><pre id="code0" class="unselectable codeClass">				{
+</pre><pre id="code0" class="unselectable codeClass">					System.out.print( "[Client] " );
+</pre><pre id="code0" class="unselectable codeClass">					String clientMessage = scan.nextLine(); 
+</pre><pre id="codeC14" class="unselectable codeClass" onmouseover="f8(this.id, true) " onmouseout="f8(this.id, false)" onclick="f7('C14')">C14					networkOut.println( clientMessage );
+
+</pre><pre id="codeC15" class="unselectable codeClass" onmouseover="f8(this.id, true) " onmouseout="f8(this.id, false)" onclick="f7('C15')">C15					if( clientMessage.equals( "bye" ) )
+</pre><pre id="code0" class="unselectable codeClass">					{
+</pre><pre id="code0" class="unselectable codeClass">						System.out.println( "[Client]가 대화를 종료하였습니다" );
+</pre><pre id="codeC16" class="unselectable codeClass" onmouseover="f8(this.id, true) " onmouseout="f8(this.id, false)" onclick="f7('C16')">C16						break;					
+</pre><pre id="code0" class="unselectable codeClass">					}
+
+</pre><pre id="codeC17" class="unselectable codeClass" onmouseover="f8(this.id, true) " onmouseout="f8(this.id, false)" onclick="f7('C17')">C17					String serverMessage 
+</pre><pre id="codeC18" class="unselectable codeClass" onmouseover="f8(this.id, true) " onmouseout="f8(this.id, false)" onclick="f7('C18')">C18					                     = networkIn.readLine();
+</pre><pre id="codeC19" class="unselectable codeClass" onmouseover="f8(this.id, true) " onmouseout="f8(this.id, false)" onclick="f7('C19')">C19					System.out.println( "[Server] " + serverMessage );
+</pre><pre id="code0" class="unselectable codeClass">				}
+
+</pre><pre id="code0" class="unselectable codeClass">				networkIn.close();
+</pre><pre id="code0" class="unselectable codeClass">				networkOut.close();
+</pre><pre id="code0" class="unselectable codeClass">				socket.close();
+</pre><pre id="code0" class="unselectable codeClass">				scan.close();
+</pre><pre id="code0" class="unselectable codeClass">			}
+</pre><pre id="code0" class="unselectable codeClass">			catch ( Exception e )
+</pre><pre id="code0" class="unselectable codeClass">			{
+</pre><pre id="code0" class="unselectable codeClass">				e.printStackTrace();
+</pre><pre id="code0" class="unselectable codeClass">			}
+</pre><pre id="codeC1e" class="unselectable codeClass" onmouseover="f8(this.id, true) " onmouseout="f8(this.id, false)" onclick="f7('C1e')">C1e		}
+</pre><pre id="code0" class="unselectable codeClass">	}
+</pre>
+</pre> 			</div> 			<div id = "floatingBox"> 				<b>실행 순서</b> 				<pre id = "d4" style='white-space:normal; word-wrap:break-word; width:150px;'></pre> 			</div> 		</div> 	</body> </html>   

@@ -1,0 +1,468 @@
+<!DOCTYPE html> <html> 	<head> 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 		<script type="text/javascript" src="https://5awf1ssnauwzzo5wgvczig.on.drv.tw/Web/J/J0803.js"></script> 		<script type="text/javascript" src="../reading/functions.js"></script> 		<link rel="stylesheet" href="../reading/layout.css"> 		<script> 			const d10 = [ [ "windowClosing" ], [ "run" ], [ "ServerSocket" ], [ "Socket" ], [ "ServerSocket" ], [ "Socket" ], [ "Thread" ], [ "Runnable" ], [ "ServerSocket" ], [ "accept" ], [ "Thread" ], [ "start" ], [ "Runnable" ], [ "Socket" ], [ "Thread" ], [ "start" ], [ "interrupt","interrupts" ], [ "Thread" ], [ "start" ], 							]; 		</script> 	</head> 	<body onload='f1();' onkeydown='f4()' oncontextmenu="return false" onselectstart="return false" oncopy="return false" oncut="return false" onpaste="return false" draggable="false" ondragstart="return false" ondrop="return false"> 		<div id = "container"> 			<div id = "titleBox"> 			</div> 			<div id = "navigationBox"> 			</div>  			<div id = "contentBox"> 				<h4>문제</h4> 				<pre style='white-space:normal;'>단일 클라이언트용 가위바위보 프로그램에서 네트워크 클라이언트 부분의 문제입니다 이를 해결하는 다음 프로그램에 대해 빈칸을 채우세요 </pre> 				
+<a href = "https://5awf1ssnauwzzo5wgvczig.on.drv.tw/Web/J/img/8.3_RpsSequence_SingleClient.pdf" >(시퀀스다이어그램 확인)</a><b><font color='red'></font></b> <br>  	  				<h4>코드 빈칸 채우기</h4> 				<pre style='white-space:pre;border:1px'>import javax.swing.JFrame; 
+import java.awt.event.WindowAdapter; 
+import java.awt.event.WindowEvent; 
+import rockPaperScissors.RockPaperScissorsNetwork; 
+ 
+public class RockPaperScissorsClient 
+{ 
+	public static void main(String[] args)  
+	{ 
+		String serverIP = "localhost"; 
+		RockPaperScissorsNetwork panel =  
+		                                    new RockPaperScissorsNetwork( serverIP ); 
+ 
+		JFrame frame = new JFrame( "가위바위보(클라이언트)" ); 
+		frame.getContentPane().add( panel ); 
+		frame.addWindowListener( new WindowAdapter() { 
+			public void <input id='blank0' type='text' required minlength='1' maxlength='30' size='10' onchange='f6(0)'>( WindowEvent e ) {  
+				panel.close(); 
+			} 
+		} ); 
+		frame.setDefaultCloseOperation( JFrame.EXIT_ON_CLOSE ); 
+		frame.pack(); 
+		frame.setVisible(true); 
+	} 
+} 
+ 
+package rockPaperScissors; 
+import java.awt.event.ActionEvent; 
+import javax.swing.JOptionPane; 
+import network.Network; 
+ 
+public class RockPaperScissorsNetwork extends RockPaperScissorsPanel implements Runnable 
+{	 
+	private Network network; 
+	private String id; 
+	private int counterpart; 
+	private final String headerMessage = "[RPSN] "; 
+	private final String disconnectMessage = " -1"; 
+ 
+	public RockPaperScissorsNetwork()  
+	{ 
+		super(); 
+		id = "[" + JOptionPane.showInputDialog( this, "아이디를 입력해주세요.", "아이디" ) + "]"; 
+		super.strPlayers.setText( "&lt;html&gt;&lt;body style='text-align:center;'&gt;상대편이 준비중입니다 기다려주세요&lt;br&gt;"+ id +"&lt;/body&gt;&lt;/html&gt;" );			 
+		super.disableSelection(); 
+		network =  
+		          new Network(); 
+	} 
+	 
+	public RockPaperScissorsNetwork( String serverIP ) 
+	{ 
+		this(); 
+		connectAsClient( serverIP ); 
+	} 
+ 
+	public void connectAsClient( String serverIP ) 
+	{ 
+		network.connectAsClient( serverIP, this ); 
+		network.write( headerMessage + id + " " + game.selectRockPaperScissors() ); 
+	} 
+	 
+	public void connectAsServer() 
+	{ 
+		network.connectAsServer( this ); 
+	} 
+ 
+	@Override 
+	public void actionPerformed( ActionEvent event ) 
+	{ 
+		int player =  
+		             super.selectRockPaperScissors( event ); 
+		super.showGameResult( player, counterpart ); 
+		super.disableSelection(); 
+		network.write( headerMessage + id + " " + player ); 
+	} 
+ 
+	@Override 
+	public void <input id='blank1' type='text' required minlength='1' maxlength='30' size='10' onchange='f6(1)'>()   
+	{		 
+		for ( String message = null; ( message =  
+		                                         network.read() ) 
+		                                                              != null; )  
+		{	 
+			if ( !message.contains( headerMessage ) ) 
+				continue; 
+			else if ( message.contains( disconnectMessage ) ) 
+			{ 
+				super.strPlayers.setText( "&lt;html&gt;&lt;body style='text-align:center;'&gt;상대편이 종료하였습니다&lt;br&gt;"+ id +"&lt;/body&gt;&lt;/html&gt;" ); 
+				super.imgPlayerB.setIcon( image[QUESTIONMARK][BASE] ); 
+				super.disableSelection(); 
+				network.write( headerMessage + id + disconnectMessage ); 
+			}					 
+			else 
+			{ 
+				String[] tmp = message.substring(7).split( "] " ); 
+				String counterpartID = tmp[0].trim() + "]"; 
+				counterpart = Integer.parseInt( tmp[1].trim() ); 
+				super.strPlayers.setText( "&lt;html&gt;&lt;body style='text-align:center;'&gt;"+ counterpartID + "&lt;br&gt;"+ id +"&lt;/body&gt;&lt;/html&gt;" ); 
+				super.enableSelection(); 
+			} 
+		}  
+	} 
+	 
+	public void close()   
+   	{ 
+		network.write( headerMessage + id + disconnectMessage ); 
+		network.disconnect(); 
+	} 
+} 
+package network; 
+import java.io.BufferedReader; 
+import java.io.InputStreamReader; 
+import java.io.PrintWriter; 
+import java.net.<input id='blank2' type='text' required minlength='1' maxlength='30' size='10' onchange='f6(2)'>; 
+import java.net.<input id='blank3' type='text' required minlength='1' maxlength='30' size='10' onchange='f6(3)'>; 
+ 
+public class Network  
+{ 
+	protected int serverPort; 
+	protected <input id='blank4' type='text' required minlength='1' maxlength='30' size='10' onchange='f6(4)'> serverSocket;  
+	protected <input id='blank5' type='text' required minlength='1' maxlength='30' size='10' onchange='f6(5)'> socket;  
+	 
+	private BufferedReader in; 
+	private PrintWriter out;  
+	private <input id='blank6' type='text' required minlength='1' maxlength='30' size='10' onchange='f6(6)'> waitForCounterpart;  
+ 
+	public Network() 
+	{	 
+		serverPort = 7700; 
+		serverSocket = null; 
+		socket = null; 
+		in = null; 
+		out = null; 
+		waitForCounterpart = null; 
+	} 
+	 
+	public void connectAsServer( <input id='blank7' type='text' required minlength='1' maxlength='30' size='10' onchange='f6(7)'> obj )   
+	{ 
+		try  
+		{ 
+			serverSocket = new <input id='blank8' type='text' required minlength='1' maxlength='30' size='10' onchange='f6(8)'>( serverPort );  
+			socket =  
+			         serverSocket.<input id='blank9' type='text' required minlength='1' maxlength='30' size='10' onchange='f6(9)'>();    
+			in = new BufferedReader( new InputStreamReader( socket.getInputStream() ) ); 
+			out = new PrintWriter( socket.getOutputStream(), true ); 
+			waitForCounterpart = new <input id='blank10' type='text' required minlength='1' maxlength='30' size='10' onchange='f6(10)'>( obj );  
+			waitForCounterpart.<input id='blank11' type='text' required minlength='1' maxlength='30' size='10' onchange='f6(11)'>();   
+		} 
+		catch ( Exception e ) 
+		{ 
+			e.printStackTrace(); 
+		} 
+	}  
+ 
+	public void connectAsClient( String serverIP, <input id='blank12' type='text' required minlength='1' maxlength='30' size='10' onchange='f6(12)'> obj )   
+	{ 
+		try  
+		{ 
+			socket =  
+			         new <input id='blank13' type='text' required minlength='1' maxlength='30' size='10' onchange='f6(13)'>( serverIP, serverPort );  
+			in = new BufferedReader( new InputStreamReader( socket.getInputStream() )); 
+			out = new PrintWriter( socket.getOutputStream(), true ); 
+			waitForCounterpart = new <input id='blank14' type='text' required minlength='1' maxlength='30' size='10' onchange='f6(14)'>( obj );  
+			waitForCounterpart.<input id='blank15' type='text' required minlength='1' maxlength='30' size='10' onchange='f6(15)'>();	 
+		}  
+		catch ( Exception e ) 
+		{ 
+			e.printStackTrace(); 
+		} 
+	} 
+	 
+	public String read()  
+	{ 
+		try  
+		{ 
+			if ( this.isConnecting() == true ) 
+				return  
+				       in.readLine();
+		}  
+		catch ( Exception e ) 
+		{ 
+			e.printStackTrace(); 
+		} 
+		 
+		return null; 
+	} 
+	 
+	public void write( String data )  
+	{ 
+		try  
+		{ 
+			if ( this.isConnecting() == true ) 
+				out.println( data ); 
+		}  
+		catch ( Exception e ) 
+		{ 
+			e.printStackTrace(); 
+		}	 
+	} 
+	 
+	public void disconnect()  
+	{ 
+		try  
+		{ 
+			if( waitForCounterpart != null ) 
+			{ 
+				waitForCounterpart.<input id='blank16' type='text' required minlength='1' maxlength='30' size='10' onchange='f6(16)'>();	   
+				waitForCounterpart = null; 
+			} 
+			if( in != null ) 
+			{ 
+				in.close(); 
+				in=null; 
+			}			 
+			if( out != null ) 
+			{ 
+				out.flush(); 
+				out.close(); 
+				out = null; 
+			} 
+			if( socket != null ) 
+			{ 
+				socket.close(); 
+				socket = null; 
+			} 
+			if( serverSocket != null ) 
+			{ 
+				serverSocket.close(); 
+				serverSocket = null; 
+			} 
+		}  
+		catch ( Exception e ) 
+		{ 
+			e.printStackTrace(); 
+		} 
+	} 
+ 
+	public boolean isConnecting()  
+	{ 
+		if ( ( socket != null )  
+				&& ( in != null )  
+				&& ( out != null )  
+				&& ( waitForCounterpart != null )  
+				&& ( waitForCounterpart.getState() != <input id='blank17' type='text' required minlength='1' maxlength='30' size='10' onchange='f6(17)'>.State.TERMINATED ) )    
+			return true; 
+		else 
+			return false; 
+	} 
+} 
+package rockPaperScissors; 
+import java.awt.*; 
+import java.awt.event.*; 
+import javax.swing.*; 
+ 
+public class RockPaperScissorsPanel extends JPanel implements ActionListener   
+{ 
+	protected RockPaperScissors game; 
+	private   Timer timer;	 
+	protected JLabel imgPlayerA; 
+	protected JLabel imgPlayerB; 
+ 
+	protected JLabel strPlayers; 
+ 
+	protected JButton[] button;	 
+	protected ImageIcon[][] image; 
+	 
+	protected final int BASE = 0; 
+	protected final int WIN = 1; 
+	protected final int QUESTIONMARK = 3; 
+ 
+	public RockPaperScissorsPanel()  
+	{ 
+		this.game = new RockPaperScissors(); 
+		this.timer = new Timer( 1000, new TimerListener() ); 
+		final String imgPath = "./Common/rockPaperScissors/image/"; 
+		image = new ImageIcon[4][2]; 
+		final String pathImgScissors = imgPath + "scissors.gif"; 
+		final String pathImgRock = imgPath + "rock.gif"; 
+		final String pathImgPaper = imgPath + "paper.gif"; 
+		final String pathImgScissorsWin = imgPath + "scissors_win.gif"; 
+		final String pathImgRockWin = imgPath + "rock_win.gif"; 
+		final String pathImgPaperWin = imgPath + "paper_win.gif"; 
+		final String pathImgQuestionmark = imgPath + "questionmark.gif"; 
+		image[QUESTIONMARK][BASE] = new ImageIcon( new ImageIcon( pathImgQuestionmark ).getImage().getScaledInstance( 200, 200, Image.SCALE_SMOOTH ) ); 
+		image[QUESTIONMARK][WIN] = new ImageIcon( new ImageIcon( pathImgQuestionmark ).getImage().getScaledInstance( 200, 200, Image.SCALE_SMOOTH ) ); 
+		image[game.SCISSORS][BASE] = new ImageIcon( new ImageIcon( pathImgScissors ).getImage().getScaledInstance( 200, 200, Image.SCALE_SMOOTH ) ); 
+		image[game.SCISSORS][WIN] = new ImageIcon( new ImageIcon( pathImgScissorsWin ).getImage().getScaledInstance( 200, 200, Image.SCALE_SMOOTH ) ); 
+		image[game.ROCK][BASE] = new ImageIcon( new ImageIcon( pathImgRock ).getImage().getScaledInstance( 200, 200, Image.SCALE_SMOOTH ) ); 
+		image[game.ROCK][WIN] = new ImageIcon( new ImageIcon( pathImgRockWin ).getImage().getScaledInstance( 200, 200, Image.SCALE_SMOOTH ) ); 
+		image[game.PAPER][BASE] = new ImageIcon( new ImageIcon( pathImgPaper ).getImage().getScaledInstance( 200, 200, Image.SCALE_SMOOTH ) ); 
+		image[game.PAPER][WIN] = new ImageIcon( new ImageIcon( pathImgPaperWin ).getImage().getScaledInstance( 200, 200, Image.SCALE_SMOOTH ) ); 
+			 
+		this.strPlayers = new JLabel( "&lt;html&gt;<body>[너]&lt;br&gt;[나]&lt;/body&gt;&lt;/html&gt;", JLabel.CENTER );		 
+		this.imgPlayerA = new JLabel( image[QUESTIONMARK][BASE] ); 
+		this.imgPlayerB = new JLabel( image[QUESTIONMARK][BASE] ); 
+		 
+		this.add( this.imgPlayerB ); 
+		this.add( this.strPlayers ); 
+		this.add( this.imgPlayerA ); 
+ 
+		button = new JButton[3]; 
+		button[game.SCISSORS] = new JButton( new ImageIcon( image[game.SCISSORS][BASE].getImage().getScaledInstance( 30, 30, Image.SCALE_SMOOTH ) ) ); 
+		button[game.SCISSORS].addActionListener( this );  
+		button[game.ROCK] = new JButton( new ImageIcon( image[game.ROCK][BASE].getImage().getScaledInstance( 30, 30, Image.SCALE_SMOOTH ) ) ); 
+		button[game.ROCK].addActionListener( this );  
+		button[game.PAPER] = new JButton( new ImageIcon( image[game.PAPER][BASE].getImage().getScaledInstance( 30, 30, Image.SCALE_SMOOTH ) ) ); 
+		button[game.PAPER].addActionListener( this );  
+ 
+		this.add( new JLabel("  가위 바위 보를 선택하세요  ") ); 
+		this.add( button[game.SCISSORS] ); 
+		this.add( button[game.ROCK] ); 
+		this.add( button[game.PAPER] ); 
+ 
+		this.setBackground(Color.cyan); 
+		this.setPreferredSize(new Dimension(220, 530));		 
+	} 
+ 
+	protected int selectRockPaperScissors( ActionEvent event ) 
+	{ 
+		if( event.getSource() == button[game.SCISSORS] )  
+			return game.SCISSORS; 
+		else if ( event.getSource() == button[game.ROCK] )  
+			return game.ROCK; 
+		else 
+			return game.PAPER; 
+	} 
+	 
+	protected void showGameResult( int playerA, int playerB )  
+	{ 
+		String result =  
+		                game.judge( playerA, playerB ); 
+		int playerA_winOrLose = BASE, playerB_winOrLose = BASE; 
+		if ( result.contains( "참여자가 이겼습니다" ) ) 
+		{ 			 
+			playerA_winOrLose = WIN; 
+			playerB_winOrLose = BASE; 
+		}  
+		else if ( result.contains( "상대편이 이겼습니다" ) ) 
+		{ 			 
+			playerA_winOrLose = BASE; 
+			playerB_winOrLose = WIN; 
+		}  
+		else 
+		{ 
+			playerA_winOrLose = BASE; 
+			playerB_winOrLose = BASE;	 
+		} 
+		 
+		imgPlayerA.setIcon( image[ playerA ][ playerA_winOrLose ] ); 
+		imgPlayerB.setIcon( image[ playerB ][ playerB_winOrLose ] );	 
+	}  
+	 
+	public void disableSelection() 
+	{ 
+		button[0].setEnabled( false ); 
+		button[1].setEnabled( false ); 
+		button[2].setEnabled( false ); 
+	} 
+ 
+	public void enableSelection() 
+	{ 
+		button[0].setEnabled( true ); 
+		button[1].setEnabled( true ); 
+		button[2].setEnabled( true ); 
+	} 
+		 
+	public void actionPerformed( ActionEvent event )   
+	{ 
+		int playerA =  
+		             selectRockPaperScissors( event ); 
+		int playerB =  
+		             game.selectRockPaperScissors(); 
+ 
+		showGameResult( playerA, playerB ); 
+		 
+		disableSelection(); 
+		timer.<input id='blank18' type='text' required minlength='1' maxlength='30' size='10' onchange='f6(18)'>();		 
+	} 
+	 
+	private class TimerListener implements ActionListener  
+	{ 
+		public void actionPerformed( ActionEvent event )  
+		{ 
+			timer.stop();		 
+			imgPlayerB.setIcon( image[QUESTIONMARK][BASE] ); 
+			enableSelection(); 
+		} 
+	} 
+} 
+package rockPaperScissors; 
+import java.util.Scanner; 
+ 
+public class RockPaperScissors 
+{ 
+	public final int SCISSORS = 0; 
+	public final int ROCK = 1; 
+	public final int PAPER = 2; 
+ 
+	public String play( Scanner scan ) 
+	{	 
+		int playerA = selectRockPaperScissors( scan ); 
+		int playerB = selectRockPaperScissors(); 
+		 
+		String result = ""; 
+		result += "참여자는 " + getString( playerA ) +"를 냈습니다.\n"; 
+		result += "상대편은 " + getString( playerB ) +"를 냈습니다.\n"; 
+		result += "판정결과는 " + judge( playerA, playerB ) + "\n"; 
+		return result; 
+	} 
+	 
+	public String getString( int player ) 
+	{ 
+		if ( player == SCISSORS ) 
+			return "가위"; 
+		else if ( player == ROCK ) 
+			return "바위"; 
+		else 
+			return "보";  
+	} 
+	 
+	public int getInteger( String player ) 
+	{ 
+		if ( player.equals( "가위" ) ) 
+			return SCISSORS; 
+		else if ( player.equals( "바위" ) ) 
+			return ROCK; 
+		else 
+			return PAPER;  
+	} 
+	 
+	protected int selectRockPaperScissors( Scanner scan ) 
+	{ 
+		String player; 
+		 
+		do 
+		{ 
+			System.out.print( "가위, 바위, 보 중 하나를 입력하세요 : "); 
+			player = scan.next(); 
+			 
+		} while( !player.equals( "가위" ) && !player.equals( "바위" ) && !player.equals( "보" ) ); 
+			 
+		return getInteger( player ); 
+	} 
+ 
+	protected int selectRockPaperScissors() 
+	{ 
+		return (int)(Math.random()*3);		 
+	} 
+	 
+	protected String judge( int playerA, int playerB ) 
+	{ 
+		if ( playerA == playerB ) 
+		{ 
+			return "상대편과 참여자가 비겼습니다"; 
+		} 
+		else if ( ( ( playerA == SCISSORS ) && ( playerB == PAPER ) ) 
+				|| ( ( playerA == ROCK ) && ( playerB == SCISSORS ) ) 
+				|| ( ( playerA == PAPER ) && ( playerB == ROCK ) ) ) 
+		{ 
+			return "참여자가 이겼습니다"; 
+		} 
+		else 
+		{ 
+			return "상대편이 이겼습니다"; 
+		}	 
+	} 
+} 	 			</pre> 			</div> 		</div> 	</body> </html> 
