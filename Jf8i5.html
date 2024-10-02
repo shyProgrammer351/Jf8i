@@ -31,13 +31,9 @@
 </pre>
 <pre id="code1" class="unselectable codeClass">1		public static void main( String[] args ) {
 </pre><pre id="code0" class="unselectable codeClass">			Scanner scan = new Scanner( System.in );
-</pre><pre id="code0" class="unselectable codeClass">			int firstDay = 0;
-</pre><pre id="code0" class="unselectable codeClass">			int lastDay = 0;
-</pre><pre id="code0" class="unselectable codeClass">			int day = 0;
-</pre><pre id="code0" class="unselectable codeClass">			int dayOfWeek = 0;
-</pre><pre id="code0" class="unselectable codeClass">			int sunday = 0;
+</pre><pre id="code0" class="unselectable codeClass">			final int SUNDAY = 0, SATURDAY = 6;
 </pre>
-<pre id="code2" class="unselectable codeClass">2			int saturday = 6;
+<pre id="code2" class="unselectable codeClass">2			int firstDay = 0, lastDay = 0, dayOfWeek = 0;
 </pre><pre id="code0" class="unselectable codeClass">		 
 </pre><pre id="code0" class="unselectable codeClass">			<font color="green">//<b> 시작요일 및 말일 입력 받기 </b></font>
 </pre>
@@ -55,7 +51,7 @@
 </pre><pre id="code0" class="unselectable codeClass">		 
 </pre><pre id="code0" class="unselectable codeClass">			<font color="green">//<b> 1일 이전은 공백 출력 </b></font>
 </pre>
-<pre id="code8" class="unselectable codeClass">8			for( dayOfWeek = sunday;
+<pre id="code8" class="unselectable codeClass">8			for( dayOfWeek = SUNDAY;
 </pre>
 <pre id="code9" class="unselectable codeClass">9			                        dayOfWeek &lt; firstDay;
 </pre>
@@ -66,17 +62,17 @@
 </pre><pre id="code0" class="unselectable codeClass">			 
 </pre><pre id="code0" class="unselectable codeClass">			<font color="green">//<b> 1일부터 말일까지 출력 </b></font>
 </pre>
-<pre id="code12" class="unselectable codeClass">12			for ( day = 1;
+<pre id="code12" class="unselectable codeClass">12			for ( int day = 1;
 </pre>
-<pre id="code13" class="unselectable codeClass">13			              day <= lastDay;
+<pre id="code13" class="unselectable codeClass">13			                  day <= lastDay;
 </pre>
-<pre id="code14" class="unselectable codeClass">14			                             day++, dayOfWeek++ ) {
+<pre id="code14" class="unselectable codeClass">14			                                 day++, dayOfWeek++ ) {
 </pre><pre id="code0" class="unselectable codeClass">				<font color="green">//<b> 일주일을 한줄에 출력 </b></font>
 </pre>
 <pre id="code15" class="unselectable codeClass">15				System.out.printf( "<a href='../Jf2i/Jf2i0.html#2' target='keyword'>%5d</a>", day );
 </pre><pre id="code0" class="unselectable codeClass">				<font color="green">//<b> 즉, 토요일 후 일요일은 새 줄에서 시작 </b></font>
 </pre>
-<pre id="code16" class="unselectable codeClass">16				if ( ( dayOfWeek % 7 ) == saturday ) {
+<pre id="code16" class="unselectable codeClass">16				if ( ( dayOfWeek % 7 ) == SATURDAY ) {
 </pre>
 <pre id="code17" class="unselectable codeClass">17					System.out.println();
 </pre><pre id="code0" class="unselectable codeClass">				}

@@ -8,22 +8,22 @@
 </pre><pre id="code0" class="unselectable codeClass">	{
 </pre><pre id="code1" class="unselectable codeClass" onmouseover="sP3f8(this.id, true) " onmouseout="sP3f8(this.id, false)" onclick="sP3f7('1')">1		public static void main( String[] args ) {
 </pre><pre id="code0" class="unselectable codeClass">			Scanner scan = new Scanner( System.in );
-</pre><pre id="code2" class="unselectable codeClass" onmouseover="sP3f8(this.id, true) " onmouseout="sP3f8(this.id, false)" onclick="sP3f7('2')">2			int size = 0, line = 0, blank = 0, star = 0;
+</pre><pre id="code2" class="unselectable codeClass" onmouseover="sP3f8(this.id, true) " onmouseout="sP3f8(this.id, false)" onclick="sP3f7('2')">2			int size = 0;
 </pre><pre id="code0" class="unselectable codeClass">		
 </pre><pre id="code3" class="unselectable codeClass" onmouseover="sP3f8(this.id, true) " onmouseout="sP3f8(this.id, false)" onclick="sP3f7('3')">3			System.out.print( "삼각형 크기를 입력하세요: " );
 </pre><pre id="code4" class="unselectable codeClass" onmouseover="sP3f8(this.id, true) " onmouseout="sP3f8(this.id, false)" onclick="sP3f7('4')">4			size = scan.nextInt();
 </pre><pre id="code0" class="unselectable codeClass">		
-</pre><pre id="code5" class="unselectable codeClass" onmouseover="sP3f8(this.id, true) " onmouseout="sP3f8(this.id, false)" onclick="sP3f7('5')">5			for ( line = 1;
-</pre><pre id="code6" class="unselectable codeClass" onmouseover="sP3f8(this.id, true) " onmouseout="sP3f8(this.id, false)" onclick="sP3f7('6')">6			               line &lt;= size;
-</pre><pre id="code7" class="unselectable codeClass" onmouseover="sP3f8(this.id, true) " onmouseout="sP3f8(this.id, false)" onclick="sP3f7('7')">7			                            line++ ) {
-</pre><pre id="code8" class="unselectable codeClass" onmouseover="sP3f8(this.id, true) " onmouseout="sP3f8(this.id, false)" onclick="sP3f7('8')">8				for ( blank = size - line;
-</pre><pre id="code9" class="unselectable codeClass" onmouseover="sP3f8(this.id, true) " onmouseout="sP3f8(this.id, false)" onclick="sP3f7('9')">9				                          blank &gt; 0;
-</pre><pre id="code10" class="unselectable codeClass" onmouseover="sP3f8(this.id, true) " onmouseout="sP3f8(this.id, false)" onclick="sP3f7('10')">10				                                    blank-- ) {
+</pre><pre id="code5" class="unselectable codeClass" onmouseover="sP3f8(this.id, true) " onmouseout="sP3f8(this.id, false)" onclick="sP3f7('5')">5			for ( int line = 1;
+</pre><pre id="code6" class="unselectable codeClass" onmouseover="sP3f8(this.id, true) " onmouseout="sP3f8(this.id, false)" onclick="sP3f7('6')">6			                   line &lt;= size;
+</pre><pre id="code7" class="unselectable codeClass" onmouseover="sP3f8(this.id, true) " onmouseout="sP3f8(this.id, false)" onclick="sP3f7('7')">7			                                line++ ) {
+</pre><pre id="code8" class="unselectable codeClass" onmouseover="sP3f8(this.id, true) " onmouseout="sP3f8(this.id, false)" onclick="sP3f7('8')">8				for ( int blank = size - line;
+</pre><pre id="code9" class="unselectable codeClass" onmouseover="sP3f8(this.id, true) " onmouseout="sP3f8(this.id, false)" onclick="sP3f7('9')">9				                              blank &gt; 0;
+</pre><pre id="code10" class="unselectable codeClass" onmouseover="sP3f8(this.id, true) " onmouseout="sP3f8(this.id, false)" onclick="sP3f7('10')">10				                                      blank-- ) {
 </pre><pre id="code11" class="unselectable codeClass" onmouseover="sP3f8(this.id, true) " onmouseout="sP3f8(this.id, false)" onclick="sP3f7('11')">11					System.out.print( " " );
 </pre><pre id="code0" class="unselectable codeClass">				}
-</pre><pre id="code12" class="unselectable codeClass" onmouseover="sP3f8(this.id, true) " onmouseout="sP3f8(this.id, false)" onclick="sP3f7('12')">12				for ( star = 2 * line - 1;
-</pre><pre id="code13" class="unselectable codeClass" onmouseover="sP3f8(this.id, true) " onmouseout="sP3f8(this.id, false)" onclick="sP3f7('13')">13				                          star &gt; 0;
-</pre><pre id="code14" class="unselectable codeClass" onmouseover="sP3f8(this.id, true) " onmouseout="sP3f8(this.id, false)" onclick="sP3f7('14')">14				                                   star-- ) {
+</pre><pre id="code12" class="unselectable codeClass" onmouseover="sP3f8(this.id, true) " onmouseout="sP3f8(this.id, false)" onclick="sP3f7('12')">12				for ( int star = 2 * line - 1;
+</pre><pre id="code13" class="unselectable codeClass" onmouseover="sP3f8(this.id, true) " onmouseout="sP3f8(this.id, false)" onclick="sP3f7('13')">13				                              star &gt; 0;
+</pre><pre id="code14" class="unselectable codeClass" onmouseover="sP3f8(this.id, true) " onmouseout="sP3f8(this.id, false)" onclick="sP3f7('14')">14				                                       star-- ) {
 </pre><pre id="code15" class="unselectable codeClass" onmouseover="sP3f8(this.id, true) " onmouseout="sP3f8(this.id, false)" onclick="sP3f7('15')">15					System.out.print( "*" );
 </pre><pre id="code0" class="unselectable codeClass">				}
 </pre><pre id="code16" class="unselectable codeClass" onmouseover="sP3f8(this.id, true) " onmouseout="sP3f8(this.id, false)" onclick="sP3f7('16')">16				System.out.println();
