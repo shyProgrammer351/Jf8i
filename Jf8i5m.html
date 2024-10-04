@@ -31,11 +31,12 @@
 <a href='javascript:history.back();' name='14'>14</a>			                                 day++, dayOfWeek++ ) {
 <a href='javascript:history.back();' name='15'>15</a>				System.out.printf( "%5d", day );	
 <a href='javascript:history.back();' name='16'>16</a>				if ( ( dayOfWeek % 7 ) == SATURDAY ) {
-<a href='javascript:history.back();' name='17'>17</a>					System.out.println();
+<a href='javascript:history.back();' name='17'>17</a>					dayOfWeek = SUNDAY - 1;
+<a href='javascript:history.back();' name='18'>18</a>					System.out.println();
 				}
 			}
 		
-<a href='javascript:history.back();' name='18'>18</a>		}
+<a href='javascript:history.back();' name='19'>19</a>		}
 	}
 	</pre> 				<br>
 <h4>5 6 7(firstDay=2)과 15 사이의 실행순서(10개) 및 실행상태</h4>
